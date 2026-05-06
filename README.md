@@ -1,216 +1,226 @@
 # Student Behavior Clustering using Unsupervised Learning
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![Machine Learning](https://img.shields.io/badge/ML-Unsupervised-green)
-![Status](https://img.shields.io/badge/Status-Completed-success)
-![Dataset](https://img.shields.io/badge/Dataset-OULAD-orange)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Machine%20Learning-Unsupervised-green?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Dataset-OULAD-orange?style=for-the-badge"/>
+</p>
 
 ---
 
-## Overview
+##  Project Snapshot
 
-This project applies **unsupervised machine learning** techniques to analyze student behavior using the **Open University Learning Analytics Dataset (OULAD)**.
+> *Goal:* Discover hidden student behavior patterns without labels
+>  *Method:* K-Means Clustering + Feature Engineering
+>  *Outcome:* Identified At-Risk vs High-Performing students
 
-The goal is to uncover hidden patterns in student engagement and automatically group students into meaningful clusters—without using predefined labels.
+---
+
+##  Table of Contents
+
+* [Overview](#-overview)
+* [Problem Statement](#-problem-statement)
+* [Solution Approach](#-solution-approach)
+* [Project Structure](#-project-structure)
+* [How to Run](#-how-to-run)
+* [Results](#-results)
+* [Visual Insights](#-visual-insights)
+* [Key Insights](#-key-insights)
+* [Applications](#-applications)
+* [Tech Stack](#-tech-stack)
+* [Future Work](#-future-work)
+
+---
+
+##  Overview
+
+This project uses *unsupervised learning* to analyze student behavior from the Open University dataset.
+
+Instead of relying on labels like pass/fail, the model learns patterns from:
+
+* Student engagement
+* Learning activity
+* Assessment participation
 
 ---
 
 ## Problem Statement
 
-Educational institutions often struggle to identify **at-risk students early**.
+Educational systems often fail to detect struggling students early.
 
-This project answers:
+ This project answers:
 
-> *Can we detect struggling students purely from their behavior patterns—without using performance labels?*
+> *Can we identify at-risk students purely from behavior patterns?*
 
 ---
 
 ## Solution Approach
 
-* Built a complete **data pipeline** to merge multiple relational datasets
-* Engineered behavioral features like engagement, activity, and performance indicators
-* Applied **K-Means clustering** on normalized data
-* Used **Silhouette Score** to determine optimal clusters
-* Reduced dimensions using **PCA** for visualization
+<details>
+<summary>Click to expand full pipeline</summary>
+
+### Data Processing
+
+* Merged multiple relational datasets
+* Cleaned missing values
+* Created unified student-level dataset
+
+### Feature Engineering
+
+* Total engagement (clicks)
+* Active days
+* Assessment participation
+* Submission behavior
+
+### Modeling
+
+* Standardized features
+* Applied *K-Means Clustering*
+* Used *Silhouette Score* for optimal K
+
+###  Visualization
+
+* PCA for dimensionality reduction
+* Cluster comparison charts
+* Behavioral insights
+
+</details>
 
 ---
 
 ## Project Structure
 
-```id="p9l2x1"
-oulad_student_behavior_clustering/
-│
-├── data/
-│   ├── raw/
-│   ├── interim/
-│   └── processed/
-│
-├── figures/
-│   ├── pca_cluster_plot.png
-│   ├── cluster_comparison.png
-│   ├── correlation_heatmap.png
-│   ├── cluster_size.png
-│   └── score_distribution.png
-│
-├── reports/
-│   ├── abstract.md
-│   └── findings.md
-│
-├── src/
-│   ├── data_pipeline.py
-│   ├── clustering.py
-│   ├── analyze_clusters.py
-│   ├── visualization scripts...
-│
-├── requirements.txt
-└── README.md
-```
+bash
+data/
+src/
+figures/
+reports/
+README.md
 
----
-
-## Installation
-
-```id="3hl8wq"
-git clone https://github.com/your-username/oulad-student-clustering.git
-cd oulad-student-clustering
-
-python -m venv venv
-venv\Scripts\activate
-
-pip install -r requirements.txt
-```
 
 ---
 
 ## How to Run
 
-### 1️. Data Pipeline
+bash
+# Clone repo
+git clone https://github.com/your-username/oulad-student-clustering.git
 
-```id="mq3l6m"
+# Setup environment
+python -m venv venv
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run pipeline
 python src/data_pipeline.py
-```
-
-### 2️. Clustering
-
-```id="b8v9js"
 python src/clustering.py
-```
-
-### 3️. Analysis
-
-```id="9p1gql"
 python src/analyze_clusters.py
-```
 
-### 4️. Visualizations
-
-```id="y4m8zd"
-python src/visualize_clusters.py
-python src/visualize_comparison.py
-```
 
 ---
 
-## Key Results
+## Results
 
-### Optimal Clusters: **2**
+### Optimal Clusters: *2*
 
----
-
-### Cluster 0 — High Engagement Students
-
-* High activity (~1869 clicks)
-* Regular participation (~83 days)
-* Strong performance (~76 score)
-
-**Consistent High Achievers**
-
----
-
-### Cluster 1 — At-Risk Students
-
-* Low activity (~148 clicks)
-* Minimal participation (~9 days)
-* Poor performance (~28 score)
-
-**Disengaged Learners**
+| Cluster | Type            | Behavior                       |
+| ------- | --------------- | ------------------------------ |
+| 🔵 0    | High Performers | High engagement, strong scores |
+| 🔴 1    | At-Risk         | Low activity, poor performance |
 
 ---
 
 ## Visual Insights
 
-### PCA Cluster Visualization
+### PCA Cluster Distribution
 
-![PCA](figures/pca_cluster_plot.png)
-
----
-
-### Feature Comparison Across Clusters
-
-![Comparison](figures/cluster_comparison.png)
+<p align="center">
+  <img src="figures/pca_cluster_plot.png" width="600"/>
+</p>
 
 ---
 
-### Cluster Size Distribution
+### Feature Comparison
 
-![Size](figures/cluster_size.png)
+<p align="center">
+  <img src="figures/cluster_comparison.png" width="600"/>
+</p>
+
+---
+
+### Cluster Size
+
+<p align="center">
+  <img src="figures/cluster_size.png" width="400"/>
+</p>
 
 ---
 
 ### Score Distribution
 
-![Score](figures/score_distribution.png)
+<p align="center">
+  <img src="figures/score_distribution.png" width="500"/>
+</p>
 
 ---
 
 ### Correlation Heatmap
 
-![Heatmap](figures/correlation_heatmap.png)
+<p align="center">
+  <img src="figures/correlation_heatmap.png" width="600"/>
+</p>
 
 ---
 
 ## Key Insights
 
-* Engagement strongly correlates with academic performance
-* Students naturally separate into **high-performing vs at-risk groups**
-* Behavioral data alone is enough to detect struggling students
-* Unsupervised learning can uncover actionable educational insights
+* Engagement is the strongest predictor of success
+*  Low activity students are clearly identifiable
+*  Model separated students without labels
+*  Strong gap between high and low performers
 
 ---
 
-## Real-World Applications
+## Applications
 
-* Early warning systems for at-risk students
-* Personalized learning recommendations
-* Improved course design strategies
-* Data-driven academic interventions
+* Early warning systems
+* Personalized learning paths
+* Academic intervention strategies
+* Institutional decision-making
 
 ---
 
 ## Tech Stack
 
-* **Python**
-* **Pandas, NumPy**
-* **Scikit-learn**
-* **Matplotlib, Seaborn**
+| Category      | Tools               |
+| ------------- | ------------------- |
+| Language      | Python              |
+| Data          | Pandas, NumPy       |
+| ML            | Scikit-learn        |
+| Visualization | Matplotlib, Seaborn |
 
 ---
 
-## Future Improvements
+##  Future Work
 
-* Apply DBSCAN / Hierarchical clustering
-* Build predictive models (supervised learning)
-* Deploy dashboard using Streamlit
-* Real-time student monitoring system
-
----
-
-## Author
-
-**Vishnu Vardhan**
+* 🔹 DBSCAN & Hierarchical clustering
+* 🔹 Predictive modeling (supervised learning)
+* 🔹 Streamlit dashboard
+* 🔹 Real-time analytics system
 
 ---
 
-## License
+## Authors
 
-This project is licensed under the MIT License.
+*Vishnu Vardhan* and
+*Amrithaa*
+---
+
+---
+
+##  License
+
+MIT License
